@@ -1,0 +1,112 @@
+`Ejercicio 1 Ver un video en Yotube`
+
+1. Inicio
+
+2. Ubicar el dispositivo a utilizar para ver el video.
+
+3. Si tengo celular:
+    a. Verificar si está encendido y cargado.
+    b. Verificar si tiene conexión a internet.
+
+Sino:
+    Si tengo una computadora:
+        a. Verificar si está encendida y cargada.
+        b. Verificar si tiene conexión a internet.
+
+        Sino:
+        Si tengo un televisor inteligente:
+            a. Verificar si está conectado, encendido y con internet.
+
+            Sino:
+            a. Conseguir prestado un dispositivo electrónico para poder usarlo.
+
+4. Escoger el navegador de su preferencia.
+5. Escribir la dirección https://www.youtube.com
+6. Escribir el nombre del video que se desea ver.
+7. Seleccionar el video y reproducirlo.
+
+8. Mientras el video sea entretenido:
+    a. Reproducir.
+    Si no:
+        i. Seleccionar otro video.
+        ii. Repetir hasta encontrar uno bueno para almorzar.
+
+9. Fin
+
+Parte 2
+
+`rutina diaria`
+
+1. Inicio
+
+2. Me despierto.
+3. Si me siento cansado:
+    a. Me quedo en cama 5 minutos más.
+Sino:
+    a. Me levanto de inmediato.
+
+4. Tomo agua.
+5. Si hay agua fría:
+    a. Tomo agua del refrigerador.
+Sino:
+    a. Tomo agua del tubo.
+
+6. Me baño y me cambio.
+7. Si ya estoy listo y tengo todo lo necesario (llaves y celular)
+    a. Revisar el carro.
+    b. Si el carro tiene gasolina y está en buen estado:**
+        i. Entrar al carro.
+        ii. Encender el carro.
+        iii. Abrir el portón.
+        iv. Salir de la casa.
+    c. Sino:
+        i. Resolver el problema del carro antes de salir.
+
+8. Manejar hacia el trabajo durante 30 minutos.
+
+9. Al llegar al trabajo:
+    a. Revisar la máquina.
+    b. Si la máquina está funcionando correctamente
+        i. Comenzar a trabajar.
+    c. Sino:
+        i. Reportar el problema y esperar instrucciones.
+
+10. Mientras no se cumplan 4 horas de trabajo:
+    a. Continuar operando la máquina.
+    b. Si hay fallos en la producción:
+        i. Detenerse y avisar al supervisor.
+ 
+11. Después de 4 horas:
+    a. Almorzar.
+    b. Si hay tiempo suficiente
+        i. Descansar unos minutos.
+    c. Sino:
+        i. Regresar al trabajo.
+
+12. Volver a trabajar con la máquina.
+
+13. Mientras no se cumplan otras 4 horas:
+    a. Continuar con el trabajo.
+    b. Si hay interrupciones
+        i. Reanudar el trabajo al solucionarlas.
+
+14. Después de las 4 horas adicionales:
+    a. Regresar al vehículo.
+    b. Manejar de vuelta a casa durante 30 minutos.
+
+15. Al llegar a casa:
+    a. Si hay agua caliente
+        i. Bañarme con agua caliente.
+    b. Sino:
+        i. Bañarme con agua fría.
+    c. Cambiarme de ropa.
+
+16. Descansar durante una hora.
+17. Si no me siento muy cansado:
+    a. Estudiar.
+Sino:
+    a. Dormir una siesta antes de estudiar.
+
+18. Acostarme a dormir.
+
+19. Fin
