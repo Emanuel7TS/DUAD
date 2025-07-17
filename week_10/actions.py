@@ -38,18 +38,18 @@ def add_student():
     running = True
 
     while running:
-        "name" = get_valid_name()
-        "section" = get_valid_section()
-        "spanish" = get_valid_grade()
-        "english" = get_valid_grade()
-        "social_studies" = get_valid_grade()
-        "science" = get_valid_grade()
+        name = get_valid_name()
+        section = get_valid_section()
+        spanish = get_valid_grade()
+        english = get_valid_grade()
+        social_studies = get_valid_grade()
+        science = get_valid_grade()
 
         students.append(student)
-    add_more = input("Do you want to add another student? (yes/no): ").lower()
-    if add_more != "yes":
-        running = False
-    else:
-        student_counter += 1
+    while True:
+        add_more = input("Do you want to add another student? (yes/no): ").lower()
+        if add_more in ["yes", "no"]:
+            break
+        print("Invalid input. Please type 'yes' or 'no'.")
     return students
 
