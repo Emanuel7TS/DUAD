@@ -1,22 +1,17 @@
-import menu
+import menu, actions
 
 def main():
-
     students = []
     running = True
 
     menu.show_welcome_message()
-    menu.show_main_menu()
-    menu.get_user_option()
-
-
 
     while running:
-        
+        menu.show_main_menu()
         selected_option = menu.get_user_option()
 
         if selected_option == 1:
-            print("add student")
+            students += actions.add_student()
         elif selected_option == 2:
             print("Show student's information")
         elif selected_option == 3:
@@ -28,11 +23,10 @@ def main():
         elif selected_option == 6:
             print("Import information from an existing CSV")
         elif selected_option == 7:
+            print("Return menu")
+        elif selected_option == 8:
             print("Thanks for using this program!")
-            print("Exit the program")
             break
-            
 
-
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()

@@ -5,7 +5,6 @@ def show_welcome_message():
     "Student Information System (SIS)\n\n"
     "Note: This system allows you to manage students and their grades.\n"
     "It will also let you calculate their averages and offers other tools.\n\n")
-    return welcome_message
     
 
 def show_main_menu():
@@ -17,7 +16,8 @@ def show_main_menu():
         "3. Show top 3 students by average\n"
         "4. Show overall average of all students\n"
         "5. Export information to CSV\n"
-        "6. Import information from an existing CSV\n" \
+        "6. Import information from an existing CSV\n"
+        "7. Return to menu.\n"
         "7. Exit the program\n"
     )
 
@@ -39,8 +39,3 @@ def get_user_option():
         
             else:
                 print("this caracter is out of 1-7 please select a valid option")
-            
-
-show_welcome_message()
-show_main_menu()
-get_user_option()
