@@ -48,6 +48,7 @@ def add_student():
         grades = get_all_valid_grades()
 
         student = {
+            "Id": student_counter,
             "name": name,
             "section": section,
             "grades": grades
