@@ -44,25 +44,19 @@ def add_student():
 
     while running:
         name = get_valid_name()
-        section = get_all_valid_grades()
-        spanish = get_all_valid_grades()
-        english = get_all_valid_grades()
-        social_studies = get_all_valid_grades()
-        science = get_all_valid_grades()
+        section = get_valid_section()
+        grades = get_all_valid_grades()
 
         student = {
             "name": name,
             "section": section,
-            "spanish": spanish,
-            "english": english,
-            "social_studies": social_studies,
-            "science": science
+            "grades": grades
         }
 
         students.append(student)
         print("Student has been added succesfully")
 
-        # Preguntar si quiere seguir
+        
         while True:
             add_more = input("Do you want to add another student? (yes/no): ").lower()
             if add_more in ["yes", "no"]:

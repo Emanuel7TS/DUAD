@@ -14,6 +14,8 @@ def main():
             students += actions.add_student()
         elif selected_option == 2:
             print("Show student's information")
+            for student in students:
+                print(student)
         elif selected_option == 3:
             print("Show top 3 students by average")
         elif selected_option == 4:
