@@ -17,7 +17,6 @@ def show_main_menu():
         "4. Show overall average of all students\n"
         "5. Export information to CSV\n"
         "6. Import information from an existing CSV\n"
-        "7. Return to menu.\n"
         "7. Exit the program\n"
     )
 

@@ -2,7 +2,7 @@
 
 def get_valid_name():
     while True:
-        name = input("Type student name: ").strip()
+        name = input("\nType student name: ").strip()
 
         if name.replace(" ", "").isalpha():
             return name
@@ -37,9 +37,8 @@ def get_all_valid_grades():
     
     return grades
 
-def add_student():
-    students = []
-    student_counter = 1
+def add_student(students):
+    student_counter = len(students) + 1
     running = True
 
     while running:
@@ -55,9 +54,8 @@ def add_student():
         }
 
         students.append(student)
-        print("Student has been added succesfully")
+        print("\nStudent has been added successfully\n")
 
-        
         while True:
             add_more = input("Do you want to add another student? (yes/no): ").lower()
             if add_more in ["yes", "no"]:
@@ -65,8 +63,17 @@ def add_student():
             print("Invalid input. Please type 'yes' or 'no'.")
 
         if add_more == "no":
+            print("\n-------------------------------------------------\n")
             running = False
         else:
             student_counter += 1
 
-    return students
+def show_students_info(students):
+    for student in students:
+        print(f"ID: {student['Id']}")
+        print(f"Name: {student['name']}")
+        print(f"Section: {student['section']}")
+        print("Grades:")
+        for subject, grade in student['grades'].items():
+            print(f"  {subject.capitalize()}: {grade}")
+        print("-" * 30)
