@@ -15,6 +15,7 @@ def main():
             actions.show_students_info(students)
         elif selected_option == 3:
             print("Show top 3 students by average")
+            actions.get_average(students)
         elif selected_option == 4:
             print("Show overall average of all students")
         elif selected_option == 5:
@@ -27,4 +28,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

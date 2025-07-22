@@ -77,3 +77,19 @@ def show_students_info(students):
         for subject, grade in student['grades'].items():
             print(f"  {subject.capitalize()}: {grade}")
         print("-" * 30)
+
+def get_average(students):
+    for student in students:
+        sum = 0
+        average = 0
+        grades = student["grades"].values()
+        for grade in grades:
+            sum += grade
+        average = sum/(len(grades))
+        student["Average"] = average
+
+def get_top_3_average(students):
+    average_list = [] 
+    for student in students:
+        for average in student["average"]:
+            list.append
