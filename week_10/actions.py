@@ -47,7 +47,7 @@ def add_student(students):
         grades = get_all_valid_grades()
 
         student = {
-            "Id": student_counter,
+            "id": student_counter,
             "name": name,
             "section": section,
             "grades": grades
@@ -79,17 +79,36 @@ def show_students_info(students):
         print("-" * 30)
 
 def get_average(students):
-    for student in students:
-        sum = 0
-        average = 0
-        grades = student["grades"].values()
-        for grade in grades:
-            sum += grade
-        average = sum/(len(grades))
-        student["Average"] = average
+        students_average = []
+        for student in students:
+            sum = 0
+            average = 0
+            grades = student["grades"].values()
+
+            for grade in grades:
+                sum += grade
+            average = sum/(len(grades))
+
+            student_average_info = {"Id":student["id"] ,
+                                    "Name":student["name"],
+                                    "Average":average
+                                    }
+            students_average.append(student_average_info)
+
+        return students_average
+
+def get_average_key(student):
+    return student["average"]
 
 def get_top_3_average(students):
-    average_list = [] 
-    for student in students:
-        for average in student["average"]:
-            list.append
+
+    top_students_average = get_average(students)
+    top_students_average.sort(key=get_average_key,reverse=True)
+
+    if (len(top_students_average)) >= 3:
+        for i in range(0,3):
+            print(f"Top {i+1} = ID: {top_students_average[i]['id']} Name: {top_students_average[i]['name']} Average: {top_students_average[i]['average']}")
+
+
+    else:
+        print("You must have at leat 3 students to get top 3 average ")
