@@ -1,4 +1,5 @@
-import csv  # Asegúrate de tener esto al inicio de tu módulo
+import csv
+import os
 
 def export_students_info(students):
     if not students:
@@ -29,10 +30,25 @@ def export_students_info(students):
                 csv_writer.writerow(student_info)
         print("\nStudent data exported successfully to 'students_info.csv'.\n")
 
+
 def import_valid_csv(students):
+    if os.path.exists('students_info.csv'):
+        with open('students_info.csv', 'r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
 
-    with open('names.csv', 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
-
-        for line in csv_reader:
-            print(line)
+            for student in csv_reader:
+                student_info = {
+                    "id": int(student["Id"]),
+                    "name": student["Name"],
+                    "section": student["Section"],
+                    "grades": {
+                        "spanish": int(student["Spanish Grade"]),
+                        "english": int(student["English Grade"]),
+                        "social_studies": int(student["Social Studies Grade"]),
+                        "science": int(student["Science Grade"])
+                    }
+                }
+                students.append(student_info)
+                print(student_info, "\n")
+    else:
+        print("El archivo 'students_info.csv' no existe. No se puede importar.")

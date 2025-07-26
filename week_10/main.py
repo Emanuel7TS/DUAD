@@ -22,7 +22,7 @@ def main():
         elif selected_option == 5:
             data.export_students_info(students)
         elif selected_option == 6:
-            print("Import information from an existing CSV")
+            data.import_valid_csv(students)
         elif selected_option == 7:
             print("Thanks for using this program!")
             break
