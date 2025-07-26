@@ -70,7 +70,7 @@ def add_student(students):
 
 def show_students_info(students):
     for student in students:
-        print(f"ID: {student['Id']}")
+        print(f"ID: {student['id']}")
         print(f"Name: {student['name']}")
         print(f"Section: {student['section']}")
         print("Grades:")
@@ -98,17 +98,27 @@ def get_average(students):
         return students_average
 
 def get_average_key(student):
-    return student["average"]
+    return student["Average"]
 
-def get_top_3_average(students):
-
-    top_students_average = get_average(students)
-    top_students_average.sort(key=get_average_key,reverse=True)
+def get_top_3_average(students_average):
+    top_students_average = students_average
+    students_average.sort(key=get_average_key,reverse=True)
 
     if (len(top_students_average)) >= 3:
         for i in range(0,3):
-            print(f"Top {i+1} = ID: {top_students_average[i]['id']} Name: {top_students_average[i]['name']} Average: {top_students_average[i]['average']}")
+            print(f"Top {i+1} = ID: {top_students_average[i]['Id']} Name: {top_students_average[i]['Name']} Average: {top_students_average[i]['Average']}")
 
 
     else:
-        print("You must have at leat 3 students to get top 3 average ")
+        print("\nYou must have at least 3 students to get top 3 average!\n ")
+
+def get_general_average(students_average):
+    if (len(students_average)) > 1:
+        sum = 0
+        for student in students_average:
+            average = student["Average"]
+            sum += average
+        general_average = round((sum/(len(students_average))),2)
+        print (f"The general average from {len(students_average)} es: {general_average} ")
+    else: 
+        print("we can not calculate a general average with one student or less")
