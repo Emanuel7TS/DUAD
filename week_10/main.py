@@ -1,4 +1,4 @@
-import menu, actions
+import menu, actions, data
 
 def main():
     students = []
@@ -17,9 +17,10 @@ def main():
             average = actions.get_average(students)
             actions.get_top_3_average(average) 
         elif selected_option == 4:
-            print("Show overall average of all students")
+            general_average = actions.get_average(students)
+            actions.get_general_average(general_average)
         elif selected_option == 5:
-            print("Export information to CSV")
+            data.export_students_info(students)
         elif selected_option == 6:
             print("Import information from an existing CSV")
         elif selected_option == 7:
