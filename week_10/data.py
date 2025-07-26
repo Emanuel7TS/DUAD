@@ -1,5 +1,6 @@
 import csv
 import os
+import json
 
 def export_students_info(students):
     if not students:
@@ -49,6 +50,6 @@ def import_valid_csv(students):
                     }
                 }
                 students.append(student_info)
-                print(student_info, "\n")
+                print(json.dumps(student_info, indent=4))
     else:
-        print("El archivo 'students_info.csv' no existe. No se puede importar.")
+        print("There aren't any file to import. ")
