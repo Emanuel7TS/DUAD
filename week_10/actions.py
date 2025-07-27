@@ -2,19 +2,19 @@
 
 def get_valid_name():
     while True:
-        name = input("\nType student name: ").strip()
+        name = input("\nEnter the student's name: ").strip()
 
         if name.replace(" ", "").isalpha():
             return name
         else:
-            print("Name can only contain letters.")
+            print("Invalid input. The name should only contain letters.")
 
 def get_valid_section():
     while True:
-        section = input("Type student section: ").strip()
+        section = input("Enter the student's section: ").strip()
 
         if section == "":
-            print("Name cannot be empty. Please try again.")
+            print("Section cannot be empty. Please try again.")
         else:
             return section
              
@@ -26,7 +26,7 @@ def get_all_valid_grades():
     for subject in subjects:
         while True:
             try:
-                grade = int(input(f"Type student {subject} grade: "))
+                grade = int(input(f"Enter the student's grade for {subject}: "))
                 if 0 <= grade <= 100:
                     grades[subject.lower().replace(" ", "_")] = grade
                     break
@@ -54,21 +54,23 @@ def add_student(students):
         }
 
         students.append(student)
-        print("\nStudent has been added successfully\n")
+        print(f"\nStudent {name} was added successfully.\n")
+
 
         while True:
-            add_more = input("Do you want to add another student? (yes/no): ").lower()
+            add_more = input("Would you like to add another student? (yes/no): ").lower()
             if add_more in ["yes", "no"]:
                 break
-            print("Invalid input. Please type 'yes' or 'no'.")
+            print("Invalid choice. Please enter 'yes' or 'no'.")
 
         if add_more == "no":
-            print("\n-------------------------------------------------\n")
+            print("\n---------------- Returning to Main Menu ----------------\n")
             running = False
         else:
             student_counter += 1
 
 def show_students_info(students):
+
     for student in students:
         print(f"ID: {student['id']}")
         print(f"Name: {student['name']}")
@@ -76,18 +78,18 @@ def show_students_info(students):
         print("Grades:")
         for subject, grade in student['grades'].items():
             print(f"  {subject.capitalize()}: {grade}")
-        print("-" * 30)
+        print("\n" + "-" * 40 + "\n")
 
 def get_average(students):
         students_average = []
         for student in students:
-            sum = 0
+            total = 0
             average = 0
             grades = student["grades"].values()
 
             for grade in grades:
-                sum += grade
-            average = sum/(len(grades))
+                total += grade
+            average = total/(len(grades))
 
             student_average_info = {"Id":student["id"] ,
                                     "Name":student["name"],
@@ -107,10 +109,8 @@ def get_top_3_average(students_average):
     if (len(top_students_average)) >= 3:
         for i in range(0,3):
             print(f"Top {i+1} = ID: {top_students_average[i]['Id']} Name: {top_students_average[i]['Name']} Average: {top_students_average[i]['Average']}")
-
-
     else:
-        print("\nYou must have at least 3 students to get top 3 average!\n ")
+        print("\nAt least 3 students are required to calculate the top 3 averages.\n ")
 
 def get_general_average(students_average):
     if (len(students_average)) > 1:
@@ -121,4 +121,5 @@ def get_general_average(students_average):
         general_average = round((sum/(len(students_average))),2)
         print (f"The general average from {len(students_average)} es: {general_average} ")
     else: 
-        print("we can not calculate a general average with one student or less")
+        print("Cannot calculate general average with fewer than 2 students.")
+        

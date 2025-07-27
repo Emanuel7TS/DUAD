@@ -24,8 +24,9 @@ def main():
         elif selected_option == 6:
             data.import_valid_csv(students)
         elif selected_option == 7:
-            print("Thanks for using this program!")
+            print("Thank you for using the Student Information System. Goodbye!")
             break
 
 if __name__ == "__main__":
     main()
+    

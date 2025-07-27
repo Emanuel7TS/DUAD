@@ -26,7 +26,7 @@ def get_user_option():
         running = True
         while running:
             try:
-                selected_option = int(input("Choose an option: "))
+                selected_option = int(input("Select an option from the menu: "))
 
             except ValueError:
                 print("\nError: Please enter a number between 1 and 6.\n")
@@ -37,4 +37,4 @@ def get_user_option():
                 return selected_option
         
             else:
-                print("this caracter is out of 1-7 please select a valid option")
+                print("Invalid choice. Please enter a number between 1 and 7.")

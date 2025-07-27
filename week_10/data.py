@@ -4,7 +4,7 @@ import json
 
 def export_students_info(students):
     if not students:
-        print("you have not added students yet")
+        print("No students to export. Please add students first.")
 
     else: 
 
@@ -29,7 +29,7 @@ def export_students_info(students):
                     "Science Grade": student["grades"]["science"],
                 }
                 csv_writer.writerow(student_info)
-        print("\nStudent data exported successfully to 'students_info.csv'.\n")
+        print("\nStudent data was successfully exported to 'students_info.csv'.\n")
 
 
 def import_valid_csv(students):
@@ -52,4 +52,4 @@ def import_valid_csv(students):
                 students.append(student_info)
                 print(json.dumps(student_info, indent=4))
     else:
-        print("There aren't any file to import. ")
+        print("No CSV file found to import.")
