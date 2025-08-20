@@ -1,11 +1,15 @@
-# Semana 10 - DUAD
+Modulo 1 FullStack Dev
 
-Este es mi avance del proyecto para la semana 10. El sistema tiene:
+Este repositorio contiene las practicas realizadas por semana
 
-- Un menú por línea de comandos
-- Validaciones de nombre, sección y notas
-- Estructura modular (`main`, `menu`, `actions`, `data`)
-- Opciones como agregar estudiantes, ver top 3, exportar/importar, etc.
+Skills:
+- Variables
+- ciclos
+- listas
+- dicionarios
+- funciones
+- poo
+- etc....
 
 ✅ En desarrollo...
 
