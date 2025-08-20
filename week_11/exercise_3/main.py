@@ -1,4 +1,7 @@
-import menu, actions, data
+from student import Student
+import menu
+import actions
+import data
 
 def main():
     students = []
@@ -14,11 +17,9 @@ def main():
         elif selected_option == 2:
             actions.show_students_info(students)
         elif selected_option == 3:
-            average = actions.get_average(students)
-            actions.get_top_3_average(average) 
+            actions.get_top_3_average(students)
         elif selected_option == 4:
-            general_average = actions.get_average(students)
-            actions.get_general_average(general_average)
+            actions.get_general_average(students)
         elif selected_option == 5:
             data.export_students_info(students)
         elif selected_option == 6:
@@ -29,4 +30,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
