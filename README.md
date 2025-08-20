@@ -4,11 +4,11 @@ Este repositorio contiene las practicas realizadas por semana
 
 Skills:
 - Variables
-- ciclos
-- listas
-- dicionarios
-- funciones
-- poo
+- Ciclos
+- Listas
+- Dicionarios
+- Funciones
+- POO
 - etc....
 
 ✅ En desarrollo...
