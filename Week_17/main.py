@@ -1,28 +1,24 @@
-import models, interfaces
-import persistence
+import FreeSimpleGUI as sg
+import interfaces
+import models
 
 def main():
 
+    name = interfaces.show_login_window()
+
+    if not name:
+        return
+
+    confirmed = interfaces.show_validation_window(name)
+
+    if not confirmed:
+        return
+
     fm = models.FinanceManager()
 
-    c1 = fm.add_category("food")
-    c2 = fm.add_category("gas")
-    c3 = fm.add_category("internet")
+    interfaces.show_welcome_window(name)
 
-    m1 = fm.add_movement("nachos",4500,"expense",c1)
-    m2 = fm.add_movement("car",10000,"expense",c2)
-    m3 = fm.add_movement("claro",25000,"expense",c3)
-    m4 = fm.add_movement("motorcicle",10000,"income",c2)
-
-    c1.name = "fast_food"
-
-    for cat in fm.categories.values():
-        print(cat.name)
-    for mov in fm.movements:
-        print(f"{mov.name} {mov.value} {mov.type} {mov.category.name}")
-
-
-    persistence.store_categories(fm.categories)
+    interfaces.main_menu(fm, name)
 
 if __name__ == "__main__":
-    main()
+    main() 

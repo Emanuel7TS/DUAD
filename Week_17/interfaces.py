@@ -1,5 +1,5 @@
 import FreeSimpleGUI as sg
-
+import main
 
 def show_login_window():
 
@@ -83,26 +83,202 @@ def show_welcome_window(name):
             return True
 
 
-def main_menu():
+def main_menu(fm,name):
 
     layout = [
         [sg.Text("PETRAFI")],
 
-        [sg.Button("Add Category"), sg.Button("?")],
+        [sg.Button("Add Category"), sg.Button("(i)",key="category_help")],
 
-        [sg.Button("Add Movement"), sg.Button("?")],
+        [sg.Button("Add Movement"), sg.Button("(i)",key="movement_help")],
 
-        [sg.Button("Show Balance"), sg.Button("?")],
+        [sg.Button("Show Balance"), sg.Button("(i)",key="balance_help")],
 
-        [sg.Button("Save Data"), sg.Button("?")],
+        [sg.Button("Save Data"), sg.Button("(i)",key="save_help")],
 
-        [sg.Button("Load Data"), sg.Button("?")],
+        [sg.Button("Load Data"), sg.Button("(i)",key="load_help")],
 
         [sg.Button("Exit")],]
 
-    window = sg.Window("Welcome", layout)
+    window = sg.Window("Menu", layout)
 
     while True:
 
         event, values = window.read()
 
+        if event == "Add Category":
+            try:
+
+                category = add_category(fm)
+
+            except ValueError as e:
+                sg.popup_error(str(e))
+
+        if event == "category_help":
+            sg.popup("Categories help organize your movements such as food, transport, salary or bills.",title="Category Help")
+
+        if event == "Add Movement":
+
+            if not fm.categories:
+                sg.popup_error(
+                    "You must create at least one category first.")
+                continue
+
+            movement = add_movement(fm)
+
+        if event == "movement_help":
+            sg.popup("Create a new income or expense movement and assign it to a category.",title="Category Help")
+
+        if event == "Show Balance":
+            show_balance(fm)
+
+        if event == "balance_help":
+            sg.popup("Displays the difference between your total income and total expenses.",title="Category Help")
+
+        if event == "Save Data":
+            pass
+
+        if event == "save_help":
+            sg.popup("Stores your current categories and movements into CSV files.",title="Category Help")
+        
+        if event == "Load Data":
+            pass
+
+        if event == "load_help":
+            sg.popup("Loads previously saved financial data from your CSV files.",title="Category Help")
+
+        if event == "Exit":
+            break
+
+        if event == sg.WIN_CLOSED:
+            break
+
+    window.close()
+
+def add_category(fm):
+
+    layout = [
+        [sg.Text(f"type category's name:?")],
+        [sg.Input(key = "category_name")],\
+        [sg.Button("Create"), sg.Button("Cancel")]
+        ]
+
+    window = sg.Window("Add Category", layout)
+
+    while True:
+        event, values = window.read()
+
+        if event == "Create":
+            try:
+                name = values["category_name"]
+                confirmation = sg.popup_ok_cancel(f"Do you want to save this category with this name: {name}")
+    
+                if confirmation == "OK":
+                    category = fm.add_category(name)
+                    sg.popup_ok("Category added successfully")
+
+                    window.close()
+                    return category
+            except ValueError as e:
+                sg.popup_error(str(e))
+
+        if event == "Cancel":
+            window.close()
+            return None
+
+def add_movement(fm):
+
+    display_categories = [
+    category.title()
+    for category in fm.categories.keys()]
+
+    display_types = [
+    movement_type.title()
+    for movement_type in fm.valid_types]
+    layout = [
+
+        [sg.Text("Movement name:")],
+        [sg.Input(key="movement_name")],
+
+        [sg.Text("Value:")],
+        [sg.Input(key="movement_value")],
+
+        [sg.Text("Type:")],
+        [sg.Combo(
+            values= display_types,
+            key="movement_type"
+        )],
+
+        [sg.Text("Category:")],
+        [sg.Combo(
+            values=display_categories,
+            key="movement_category")],
+
+        [sg.Button("Create"), sg.Button("Cancel")]]
+    
+    window = sg.Window("Add Movement", layout)
+
+    while True:
+        event, values = window.read()
+
+        if event == "Create":
+
+            if not all([
+                values["movement_name"],
+                values["movement_value"],
+                values["movement_type"],
+                values["movement_category"]
+            ]):
+                sg.popup_error("All fields are required.")
+                continue
+
+            try:
+                movement_name = values["movement_name"]
+                movement_value = values["movement_value"]
+                movement_type = values["movement_type"].lower()
+                movement_category = values["movement_category"].lower()
+
+                movement_category_object = fm.categories[movement_category]
+
+                movement = fm.add_movement(
+                    movement_name,
+                    movement_value,
+                    movement_type,
+                    movement_category_object
+                )
+
+                sg.popup_ok("Movement added successfully")
+
+                window.close()
+                return movement
+
+            except ValueError as e:
+                sg.popup_error(str(e))
+
+        if event == "Cancel":
+            window.close()
+            return None
+
+
+def show_balance(fm):
+    income_total = fm.get_total_by_type("income")
+    expense_total = fm.get_total_by_type("expense")
+    total = fm.get_balance()
+    layout = [
+        [sg.Text(f"Total Income: {income_total}")],
+        [sg.Text(f"Total Expense: {expense_total}")],
+        [sg.Text(f"Net Balance: {total}")],
+        [sg.Button("Close")]
+    ]
+    window = sg.Window("Show Balance", layout)
+
+    while True:
+
+        event, values = window.read()
+        if event == "Close":
+            window.close()
+            return None
+        
+        if event == sg.WIN_CLOSED:
+            window.close()
+            return None
