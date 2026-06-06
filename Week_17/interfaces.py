@@ -1,5 +1,6 @@
 import FreeSimpleGUI as sg
 import main
+import persistence
 
 def show_login_window():
 
@@ -23,11 +24,12 @@ def show_login_window():
             window["name"].update("")
 
         if event == "Start":
-
             name = values["name"]
+            if name == "":
+                sg.popup("You must write a name")
+                continue
 
             window.close()
-
             return name
 
 
@@ -120,8 +122,7 @@ def main_menu(fm,name):
         if event == "Add Movement":
 
             if not fm.categories:
-                sg.popup_error(
-                    "You must create at least one category first.")
+                sg.popup_error("You must create at least one category first.")
                 continue
 
             movement = add_movement(fm)
@@ -136,13 +137,37 @@ def main_menu(fm,name):
             sg.popup("Displays the difference between your total income and total expenses.",title="Category Help")
 
         if event == "Save Data":
-            pass
+            try:
+                categories = fm.categories
+                persistence.store_categories(categories)
+                sg.popup("Category data was successfully exported to a CSV file.")
+            except ValueError as e:
+                sg.popup_error(str(e))
+            try:
+                movements = fm.movements
+                persistence.store_movements(movements)
+                sg.popup("Movement data was successfully exported to a CSV file.")
+            except ValueError as e:
+                sg.popup_error(str(e))
 
         if event == "save_help":
             sg.popup("Stores your current categories and movements into CSV files.",title="Category Help")
         
         if event == "Load Data":
-            pass
+                if fm.data_loaded == False:
+                    try:
+                        persistence.load_categories(fm)
+                        sg.popup("Category data was successfully loaded.")
+                    except FileNotFoundError as e:
+                        sg.popup(str(e))
+                    try:
+                        persistence.load_movements(fm)
+                        sg.popup("Movement data was successfully loaded.")
+                    except FileNotFoundError as e:
+                        sg.popup(str(e))
+                    fm.data_loaded = True
+                else:
+                    sg.popup_error("Data has already been loaded.")
 
         if event == "load_help":
             sg.popup("Loads previously saved financial data from your CSV files.",title="Category Help")
@@ -244,8 +269,7 @@ def add_movement(fm):
                     movement_name,
                     movement_value,
                     movement_type,
-                    movement_category_object
-                )
+                    movement_category_object)
 
                 sg.popup_ok("Movement added successfully")
 

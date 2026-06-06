@@ -12,7 +12,6 @@ def store_categories(categories):
 
         for category_name in categories.keys():
             new_file.write(f"{category_name}\n")
-    print("\nStudent data was successfully exported to 'students_info.csv'.\n")
 
 
 def store_movements(movements):
@@ -28,27 +27,31 @@ def store_movements(movements):
             type = movement.type
             category = movement.category.name
             new_file.write(f"{movement.name},{movement.value},{movement.type},{movement.category.name}\n")
-    print("\nStudent data was successfully exported to 'students_info.csv'.\n")
 
 
-def load_categories(manager_cat):
+def load_categories(finance_manager):
     if os.path.exists('categories.csv'):
-        with open('categories.csv', 'r') as csv_file:
-            for row in csv_file:
-                manager_cat.add_category(row.strip())
+            
+            with open('categories.csv', 'r') as csv_file:
+                for row in csv_file:
+                    category_key = row.strip()
+                    if category_key in finance_manager.categories:
+                        continue
+                    finance_manager.add_category(row.strip())
+
     else:
-        print("No CSV file found to import.")
+        raise FileNotFoundError("No category CSV file found to import.")
 
 
-def load_movements(manager_cat):
+def load_movements(finance_manager):
     if os.path.exists('movements.csv'):
-        with open('categories.csv', 'r') as csv_file:
+        with open('movements.csv', 'r') as csv_file:
             for row in csv_file:
                 parts = row.strip().split(",")
                 name = parts[0]
                 value = float(parts[1])
                 type = parts[2]
                 category = parts[3]
-                manager_cat.add_movement(name,value,type,manager_cat.categories[category])
+                finance_manager.add_movement(name,value,type,finance_manager.categories[category])
     else:
-        print("No CSV file found to import.")
+        raise FileNotFoundError("No Movement CSV file found to import.")

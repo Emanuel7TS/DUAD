@@ -22,6 +22,7 @@ class FinanceManager():
         self.categories = {}
         self.movements = []
         self.valid_types = ["income","expense"]
+        self.data_loaded = False
 
     def add_category(self,name):
         category = Category(name)

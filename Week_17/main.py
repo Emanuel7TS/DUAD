@@ -4,15 +4,14 @@ import models
 
 def main():
 
-    name = interfaces.show_login_window()
+    while True:
+        name = interfaces.show_login_window()
+        if name is None:
+            return
+        confirmed = interfaces.show_validation_window(name)
 
-    if not name:
-        return
-
-    confirmed = interfaces.show_validation_window(name)
-
-    if not confirmed:
-        return
+        if confirmed:
+            break
 
     fm = models.FinanceManager()
 
