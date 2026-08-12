@@ -39,6 +39,7 @@ class FinanceManager():
         else:
             movement = Movement(name,value,type,category)
             self.movements.append(movement)
+        return movement
 
     def get_total_by_type(self,movement_type):
         if movement_type not in self.valid_types:

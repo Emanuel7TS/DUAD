@@ -20,4 +20,4 @@ def main():
     interfaces.main_menu(fm, name)
 
 if __name__ == "__main__":
-    main() 
+    main()

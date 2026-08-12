@@ -1,30 +1,23 @@
-import FreeSimpleGUI as sg
+from models import FinanceManager                   # pytest test_logic.py
+import pytest
 
-layout = [
-    [sg.Text("Digite su edad", key = "type")],
-    [sg.Input(key = "edad")],
-    [sg.Button("Show edad")],
-    [sg.Text(key="result")],]
 
-window = sg.Window("Example", layout)
+def test_create_correct_category():
+# Arrange
+    fm_test = FinanceManager()
 
-while True:
-    event, values = window.read()
+# Act
+    fm_test.add_category("FooD")
 
-    if event == sg.WIN_CLOSED:
-        break
+# Assert
+    assert "food" in fm_test.categories
 
-    try:
-        data = int(values["edad"]) 
-        if event == "Show edad":
-            if values["edad"] != "":
-                age = values["edad"]
-            else:
-                print("edad invalida")
-                window["edad"].update("")
-        window["result"].Update(f"Su edad es: {age}")
+def test_check_repeat_category():
 
-    except ValueError:
-        window["result"].Update(f"Edad invalida")
+    # Arrange
+    fm_test = FinanceManager()
+    fm_test.add_category("Food")
 
-window.close()
+    # Act & Assert
+    with pytest.raises(ValueError):
+        fm_test.add_category("FOOD")
