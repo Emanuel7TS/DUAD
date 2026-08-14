@@ -407,7 +407,6 @@ def confirm_exit():
 
     while True:
         event, values = window.read()
-        print("EVENT:", repr(event))
 
         if event == "Yes":
             window.close()

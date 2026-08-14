@@ -10,10 +10,15 @@ class Movement():
 
     def __init__(self, name, value, type, category):
         self.name = name.strip().lower()
+        
         try:
             self.value = float(value)
         except ValueError:
             raise ValueError("Value must be a valid number.")
+
+        if self.value < 0:
+            raise ValueError("Value must be a positive number.")
+        
         self.type = type
         self.category = category
 
