@@ -1,3 +1,6 @@
+from datetime import datetime,date
+
+
 class Category():
     def __init__(self,name):
         clean_name = name.strip().lower()
@@ -6,9 +9,11 @@ class Category():
         else:
             raise ValueError("Category name cannot be empty, have numbers or simbols.")
 
+
+
 class Movement():
 
-    def __init__(self, name, value, type, category):
+    def __init__(self, name, value, type, category, movement_date):
         self.name = name.strip().lower()
         
         try:
@@ -21,6 +26,13 @@ class Movement():
         
         self.type = type
         self.category = category
+
+        converted_date = datetime.strptime(movement_date, "%d/%m/%Y").date()
+
+        if converted_date > date.today():
+            raise ValueError("Date cannot be a day in the future")
+        
+        self.date = converted_date
 
 class FinanceManager():
     def __init__(self):
@@ -36,13 +48,13 @@ class FinanceManager():
         self.categories[category.name] = category
         return category
 
-    def add_movement(self,name,value,type,category):
+    def add_movement(self,name,value,type,category,movement_date):
         if category not in self.categories.values():
             raise ValueError("Category does not exist")
         if type not in self.valid_types:
             raise ValueError("Please selelct a type")
         else:
-            movement = Movement(name,value,type,category)
+            movement = Movement(name,value,type,category,movement_date)
             self.movements.append(movement)
         return movement
 

@@ -1,4 +1,3 @@
-import csv
 import os
 from models import FinanceManager
 
@@ -22,10 +21,6 @@ def store_movements(movements):
     with open("movements.csv", "w", newline="", encoding="utf-8") as new_file:
 
         for movement in movements:
-            name = movement.name
-            value = movement.value
-            type = movement.type
-            category = movement.category.name
             new_file.write(f"{movement.name},{movement.value},{movement.type},{movement.category.name}\n")
 
 
@@ -52,6 +47,7 @@ def load_movements(finance_manager):
                 value = float(parts[1])
                 type = parts[2]
                 category = parts[3]
-                finance_manager.add_movement(name,value,type,finance_manager.categories[category])
+                movement_date = parts[4]
+                finance_manager.add_movement(name,value,type,finance_manager.categories[category],movement_date)
     else:
         raise FileNotFoundError("No Movement CSV file found to import.")
