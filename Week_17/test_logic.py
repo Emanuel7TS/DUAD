@@ -256,3 +256,26 @@ def test_load_movements(tmp_path, monkeypatch):         # pytest Week_17/test_lo
     assert movement.type == "expense"
     assert movement.category.name == "food"
     assert movement.date == date(2026, 8, 20)
+
+
+
+
+
+def test_get_movements_by_date():                        # pytest Week_17/test_logic.py
+    # Arrange
+    fm_test = FinanceManager()
+    fm_test.add_category("Food")
+
+    fm_test.add_movement("pizza", 1200, "expense", fm_test.categories["food"], "20/08/2026")
+
+    fm_test.add_movement("burger", 3000, "expense",fm_test.categories["food"],"22/08/2026")
+
+    fm_test.add_movement("pan", 500, "expense",fm_test.categories["food"],"23/08/2026")
+
+    # Act
+    filtered_movements = fm_test.get_movements_by_date(date(2026, 8, 20), date(2026, 8, 22))
+
+    # Assert
+    assert fm_test.movements[0] in filtered_movements
+    assert fm_test.movements[1] in filtered_movements
+    assert fm_test.movements[2] not in filtered_movements

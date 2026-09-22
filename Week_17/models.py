@@ -71,3 +71,12 @@ class FinanceManager():
         total_income = self.get_total_by_type("income")
         total_expense = self.get_total_by_type("expense")
         return total_income - total_expense
+
+    def get_movements_by_date(self, start_date, end_date):
+        filtered_movements = []
+
+        for movement in self.movements:
+            if start_date <= movement.date <= end_date:
+                filtered_movements.append(movement)
+
+        return filtered_movements
